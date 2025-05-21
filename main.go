@@ -12,12 +12,12 @@ import (
 )
 
 type APIResponse struct {
-	StatusCode int    `json:"status_code"`
-	Status     string `json:"status"`
-	Message    string `json:"message"`
-	Timestamp  string `json:"timestamp"`
-	Path       string `json:"path"`
-	RequestID  string `json:"request_id"`
+	StatusCode int       `json:"status_code"`
+	Status     string    `json:"status"`
+	Message    string    `json:"message"`
+	Timestamp  time.Time `json:"timestamp"`
+	Path       string    `json:"path"`
+	RequestID  string    `json:"request_id"`
 }
 
 type ResponseVariant struct {
@@ -90,7 +90,7 @@ func generateRandomResponse(path string) APIResponse {
 		StatusCode: resp.StatusCode,
 		Status:     resp.Status,
 		Message:    msg,
-		Timestamp:  time.Now().UTC().Format(time.RFC3339),
+		Timestamp:  time.Now(),
 		Path:       path,
 		RequestID:  uuid.New().String(),
 	}
